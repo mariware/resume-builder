@@ -6,7 +6,7 @@ interface HeaderProps {
   className?: string;
 }
 
-function Header({ className, ...props }: HeaderProps) {
+function Header({ className }: HeaderProps) {
   return (
     <div
       className={cn(

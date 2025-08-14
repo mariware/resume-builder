@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "../../lib/utils";
-import { Logo } from "./../logo";
 import { Label } from "../label";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
@@ -18,7 +17,7 @@ function ProfileSection() {
         <Input
           type="text"
           id="name"
-          placeholder="e.g. Tokuno Yushi"
+          placeholder="e.g. Yushi Tokuno"
           autoComplete="off"
         />
       </div>
