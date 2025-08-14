@@ -8,6 +8,7 @@ import { EducationSection } from "../../components/sections/EducationSection";
 import { WorkSection } from "../../components/sections/WorkSection";
 import { SkillsSection } from "../../components/sections/SkillsSection";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ResumeData } from "@/models/types";
 
 const sections = [
   { id: "profile", component: ProfileSection },
@@ -18,6 +19,48 @@ const sections = [
 
 export default function Home() {
   const [sectionIndex, setSectionIndex] = useState(0);
+  const [resumeData, setResumeData] = useState<ResumeData>({
+    profile: {
+      name: "",
+      profession: "",
+      phoneNumber: "",
+      email: "",
+      linkedin: "",
+      portfolio: "",
+      description: "",
+    },
+    education: [
+      {
+        school: "",
+        schoolLocation: "",
+        degree: "",
+        schoolStartDate: "",
+        schoolEndDate: "",
+      },
+    ],
+    work: [
+      {
+        company: "",
+        workLocation: "",
+        position: "",
+        workStartDate: "",
+        workEndDate: "",
+        workDescription: "",
+      },
+    ],
+    skills: [
+      {
+        skill: "",
+        proficiency: "",
+      },
+    ],
+    languages: [
+      {
+        language: "",
+        proficiency: "",
+      },
+    ],
+  });
 
   const changeSection = (direction: "next" | "prev") => {
     setSectionIndex((prevIndex) => {
@@ -47,7 +90,10 @@ export default function Home() {
       />
       <main className="flex w-full flex-col sm:items-start border-x border-x-foreground/10 lg:border-x-0">
         <div className="h-[calc(100vh-124px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
-          <CurrentSection />
+          <CurrentSection
+            resumeData={resumeData}
+            setResumeData={setResumeData}
+          />
         </div>
         <div className="h-fit flex justify-between items-center py-4 text-sm border-t border-t-foreground/10 w-full px-6">
           <Button
@@ -66,7 +112,15 @@ export default function Home() {
           </Button>
         </div>
       </main>
-      <div className="hidden lg:flex border-l border-l-foreground/10 w-full bg-foreground/10" />
+      <div className="hidden lg:flex border-l border-l-foreground/10 w-full bg-foreground/10">
+        <div className="p-8 text-xs overflow-scroll w-full">
+          <h2 className="text-lg font-bold mb-4">Resume Preview</h2>
+          {/* Here you can render a preview of the resume based on resumeData */}
+          <pre className="whitespace-pre-wrap">
+            {JSON.stringify(resumeData, null, 2)}
+          </pre>
+        </div>
+      </div>
     </div>
   );
 }
