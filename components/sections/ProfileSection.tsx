@@ -24,7 +24,7 @@ function ProfileSection({
         <Input
           type="text"
           id="name"
-          placeholder="e.g. Yushi Tokuno"
+          placeholder="e.g. John Doe"
           autoComplete="off"
           onChange={(e) =>
             setResumeData((prevData) => ({
@@ -55,7 +55,7 @@ function ProfileSection({
         <Input
           type="number"
           id="phoneNumber"
-          placeholder="e.g. 0999 123 4567"
+          placeholder="e.g. 01000000000"
           onChange={(e) =>
             setResumeData((prevData) => ({
               ...prevData,
@@ -70,7 +70,7 @@ function ProfileSection({
         <Input
           type="email"
           id="email"
-          placeholder="e.g. tokunoyushi@naver.com"
+          placeholder="e.g. johndoe@example.com"
           autoComplete="off"
           onChange={(e) =>
             setResumeData((prevData) => ({
@@ -84,11 +84,11 @@ function ProfileSection({
       <div className="col-span-8 md:col-span-4 grid w-full items-center gap-2">
         <Label htmlFor="linkedin">LinkedIn Profile</Label>
         <span className="flex items-center text-sm">
-          linked.com/in/
+          linkedin.com/in/
           <Input
             type="text"
             id="linkedin"
-            placeholder="e.g. tokunoyushi"
+            placeholder="e.g. johndoe"
             onChange={(e) =>
               setResumeData((prevData) => ({
                 ...prevData,
@@ -104,7 +104,7 @@ function ProfileSection({
         <Input
           type="text"
           id="portfolio"
-          placeholder="e.g. wish.site"
+          placeholder="e.g. johndoe.dev"
           onChange={(e) =>
             setResumeData((prevData) => ({
               ...prevData,
@@ -115,7 +115,7 @@ function ProfileSection({
         />
       </div>
       <div className="col-span-8 grid w-full items-center gap-2">
-        <Label htmlFor="description">Description</Label>
+        <Label htmlFor="description">Professional Summary</Label>
         <Textarea
           id="description"
           placeholder="Describe yourself..."

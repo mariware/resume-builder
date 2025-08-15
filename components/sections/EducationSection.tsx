@@ -63,11 +63,21 @@ function EducationSection({
             <div className="col-span-8 border-t border-t-sky-500 h-0" />
           )}
           <div className="col-span-8 grid w-full items-center gap-2">
+            <Label htmlFor="degree">Degree</Label>
+            <Input
+              type="text"
+              id="degree"
+              placeholder="e.g. BS Computer Science"
+              onChange={(e) => handleChange(index, "degree", e.target.value)}
+              value={resumeData.education[index].degree}
+            />
+          </div>
+          <div className="col-span-8 grid w-full items-center gap-2">
             <Label htmlFor="school">School</Label>
             <Input
               type="text"
               id="school"
-              placeholder="e.g. NCT University"
+              placeholder="e.g. New University"
               onChange={(e) => handleChange(index, "school", e.target.value)}
               value={resumeData.education[index].school}
             />
@@ -77,21 +87,11 @@ function EducationSection({
             <Input
               type="text"
               id="schoolLocation"
-              placeholder="e.g. NCT Zone, Kwangya"
+              placeholder="e.g. United States"
               onChange={(e) =>
                 handleChange(index, "schoolLocation", e.target.value)
               }
               value={resumeData.education[index].schoolLocation}
-            />
-          </div>
-          <div className="col-span-8 grid w-full items-center gap-2">
-            <Label htmlFor="degree">Degree</Label>
-            <Input
-              type="text"
-              id="degree"
-              placeholder="e.g. BS Computer Science"
-              onChange={(e) => handleChange(index, "degree", e.target.value)}
-              value={resumeData.education[index].degree}
             />
           </div>
           <div className="col-span-4 grid w-full items-center gap-2">
@@ -121,8 +121,8 @@ function EducationSection({
         </React.Fragment>
       ))}
       <div className="col-span-8 flex justify-between items-center text-sm">
-        <Button onClick={() => addEducation()}> Add </Button>
-        {resumeData.education.length > 1 && (
+        <Button onClick={() => addEducation()}> Add School </Button>
+        {resumeData.education.length > 0 && (
           <Button onClick={() => removeEducation()} variant="outline">
             Remove
           </Button>

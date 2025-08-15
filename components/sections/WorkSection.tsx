@@ -54,7 +54,7 @@ function WorkSection({
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
-      <p className="col-span-8 font-bold text-lg">Work Section</p>
+      <p className="col-span-8 font-bold text-lg">Work Experience Section</p>
       {resumeData.work.map((work, index) => (
         <React.Fragment key={index}>
           {index !== 0 && (
@@ -65,7 +65,7 @@ function WorkSection({
             <Input
               type="text"
               id="company"
-              placeholder="e.g. SM Entertainment"
+              placeholder="e.g. New Company"
               onChange={(e) => handleChange(index, "company", e.target.value)}
               value={resumeData.work[index].company}
             />
@@ -75,7 +75,7 @@ function WorkSection({
             <Input
               type="text"
               id="workLocation"
-              placeholder="e.g. Kwangya"
+              placeholder="e.g. United States"
               onChange={(e) =>
                 handleChange(index, "workLocation", e.target.value)
               }
@@ -109,7 +109,7 @@ function WorkSection({
             <Input
               type="text"
               id="workEndDate"
-              placeholder="e.g. Jun 2025"
+              placeholder="e.g. Dec 2025"
               onChange={(e) =>
                 handleChange(index, "workEndDate", e.target.value)
               }
@@ -130,8 +130,8 @@ function WorkSection({
         </React.Fragment>
       ))}
       <div className="col-span-8 flex justify-between items-center text-sm">
-        <Button onClick={() => addWork()}> Add </Button>
-        {resumeData.work.length > 1 && (
+        <Button onClick={() => addWork()}> Add Experience </Button>
+        {resumeData.work.length > 0 && (
           <Button onClick={() => removeWork()} variant="outline">
             Remove
           </Button>

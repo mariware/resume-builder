@@ -138,8 +138,8 @@ function SkillsSection({
         </React.Fragment>
       ))}
       <div className="col-span-8 flex justify-between items-center text-sm">
-        <Button onClick={() => addSkill()}> Add </Button>
-        {resumeData.skills.length > 1 && (
+        <Button onClick={() => addSkill()}> Add Skill </Button>
+        {resumeData.skills.length > 0 && (
           <Button onClick={() => removeSkill()} variant="outline">
             Remove
           </Button>
@@ -156,7 +156,7 @@ function SkillsSection({
             <Input
               type="text"
               id="language"
-              placeholder="e.g. Japanese"
+              placeholder="e.g. English"
               onChange={(e) =>
                 handleLanguageChange(index, "language", e.target.value)
               }
@@ -197,8 +197,8 @@ function SkillsSection({
         </React.Fragment>
       ))}
       <div className="col-span-8 flex justify-between items-center text-sm">
-        <Button onClick={() => addLanguage()}> Add </Button>
-        {resumeData.languages.length > 1 && (
+        <Button onClick={() => addLanguage()}> Add Language </Button>
+        {resumeData.languages.length > 0 && (
           <Button onClick={() => removeLanguage()} variant="outline">
             Remove
           </Button>

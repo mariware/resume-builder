@@ -1,12 +1,14 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { Logo } from "./logo";
+import { Button } from "./button";
 
 interface HeaderProps {
+  prefillData: () => void;
   className?: string;
 }
 
-function Header({ className }: HeaderProps) {
+function Header({ prefillData, className }: HeaderProps) {
   return (
     <div
       className={cn(
@@ -16,6 +18,12 @@ function Header({ className }: HeaderProps) {
     >
       <div className="w-full lg:max-w-7xl flex justify-between items-center px-10 py-4 text-sm">
         <Logo className="h-6 fill-white" />
+        <Button
+          onClick={() => prefillData()}
+          className="bg-blue-400 hover:bg-blue-500 text-white font-bold padding-0"
+        >
+          Show Sample
+        </Button>
       </div>
     </div>
   );

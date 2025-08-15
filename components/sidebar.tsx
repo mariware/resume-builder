@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Button } from "./button";
 import {
   SquareUser,
   GraduationCap,
@@ -46,7 +45,6 @@ function Sidebar({ className, sectionIndex, onSelect }: SidebarProps) {
           </button>
         );
       })}
-      <Button className="bg-blue-400 mr-2 font-bold mt-2"> Generate </Button>
     </div>
   );
 }
