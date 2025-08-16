@@ -7,10 +7,11 @@ import { ProfileSection } from "../../components/sections/ProfileSection";
 import { EducationSection } from "../../components/sections/EducationSection";
 import { WorkSection } from "../../components/sections/WorkSection";
 import { SkillsSection } from "../../components/sections/SkillsSection";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, Pencil } from "lucide-react";
 import { ResumeData } from "@/models/types";
 import { Resume } from "../../components/resumeViewer/resumeViewer";
 import { Header } from "../../components/header";
+import { emptyResume, exampleResume } from "@/models/resumes";
 
 const sections = [
   { id: "profile", component: ProfileSection },
@@ -21,91 +22,11 @@ const sections = [
 
 export default function Home() {
   const [sectionIndex, setSectionIndex] = useState(0);
-  const [resumeData, setResumeData] = useState<ResumeData>({
-    profile: {
-      name: "",
-      profession: "",
-      phoneNumber: "",
-      email: "",
-      linkedin: "",
-      portfolio: "",
-      description: "",
-    },
-    education: [],
-    work: [],
-    skills: [],
-    languages: [],
-  });
+  const [preview, setPreview] = useState(false);
+  const [resumeData, setResumeData] = useState<ResumeData>(emptyResume);
 
   const prefillData = () => {
-    setResumeData(() => ({
-      profile: {
-        name: "Example Name",
-        profession: "Example Profession",
-        phoneNumber: "01000000000",
-        email: "example@example.com",
-        linkedin: "example-linkedin",
-        portfolio: "example.com/portfolio",
-        description:
-          "This is an example description used to demonstrate how the profile section will look. Replace this text with real data.",
-      },
-      education: [
-        {
-          school: "Example School Name",
-          schoolLocation: "Example City, Country",
-          degree: "Example Degree or Program",
-          schoolStartDate: "Jan 2000",
-          schoolEndDate: "Dec 2004",
-        },
-        {
-          school: "Another Example School",
-          schoolLocation: "Another Example City, Country",
-          degree: "Example Training Program",
-          schoolStartDate: "Jan 2005",
-          schoolEndDate: "Dec 2009",
-        },
-      ],
-      work: [
-        {
-          company: "Example Company",
-          workLocation: "Example City, Country",
-          position: "Example Job Title",
-          workStartDate: "2010",
-          workEndDate: "2015",
-          workDescription:
-            "- Example bullet point one\n- Example bullet point two\n- Example bullet point three",
-        },
-        {
-          company: "Another Example Company",
-          workLocation: "Another Example City, Country",
-          position: "Example Position",
-          workStartDate: "2016",
-          workEndDate: "Present",
-          workDescription:
-            "- Example bullet point four\n- Example bullet point five",
-        },
-      ],
-      skills: [
-        {
-          skill: "Skill One",
-          proficiency: "Expert",
-        },
-        {
-          skill: "Skill Two",
-          proficiency: "Intermediate",
-        },
-        {
-          skill: "Skill Three",
-          proficiency: "Beginner",
-        },
-      ],
-      languages: [
-        {
-          language: "English",
-          proficiency: "Primary Fluency",
-        },
-      ],
-    }));
+    setResumeData(() => exampleResume);
   };
 
   const changeSection = (direction: "next" | "prev") => {
@@ -126,36 +47,66 @@ export default function Home() {
   };
 
   const CurrentSection = sections[sectionIndex].component;
+  const toggleButton = preview ? (
+    <>
+      <Pencil /> <span>Edit</span>
+    </>
+  ) : (
+    <>
+      <Eye /> <span>Preview</span>
+    </>
+  );
 
   return (
     <>
       <Header prefillData={prefillData} />
-      <div className="font-urbanist w-full h-full max-w-7xl justify-center mx-auto flex flex-row px-6">
+      <div className="font-urbanist w-full max-w-7xl justify-center mx-auto flex flex-row px-6">
         <Sidebar
           className="hidden lg:flex"
           sectionIndex={sectionIndex}
           onSelect={handleSectionSelect}
         />
         <main className="flex w-full flex-col sm:items-start border-x border-x-foreground/10 lg:border-x-0">
-          <div className="h-[calc(100vh-136px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
+          <div className="hidden lg:block h-[calc(100dvh-136px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
             <CurrentSection
               resumeData={resumeData}
               setResumeData={setResumeData}
             />
           </div>
+          {preview ? (
+            <div className="lg:hidden p-8 pr-4 text-xs w-full h-[calc(100dvh-136px)]">
+              <h2 className="text-lg font-bold mb-4">Resume Preview</h2>
+              <Resume resumeData={resumeData} />
+            </div>
+          ) : (
+            <div className="lg:hidden h-[calc(100dvh-136px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
+              <CurrentSection
+                resumeData={resumeData}
+                setResumeData={setResumeData}
+              />
+            </div>
+          )}
           <div className="h-fit flex justify-between items-center py-4 text-sm border-t border-t-foreground/10 w-full px-6">
             <Button
               onClick={() => changeSection("prev")}
               disabled={sectionIndex === 0}
+              className={`${preview ? "hidden" : "flex"} lg:flex items-center`}
             >
               <ChevronLeft />
-              Prev
+              <span className="hidden md:flex">Prev</span>
+            </Button>
+            <Button
+              onClick={() => setPreview(!preview)}
+              className="lg:hidden mx-auto"
+            >
+              {toggleButton}
             </Button>
             <Button
               onClick={() => changeSection("next")}
               disabled={sectionIndex === sections.length - 1}
+              className={`${preview ? "hidden" : "flex"} lg:flex items-center`}
             >
-              Next
+              <span className="hidden md:block">Next</span>
               <ChevronRight />
             </Button>
           </div>

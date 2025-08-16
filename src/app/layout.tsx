@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full overflow-clip">
+    <html lang="en" className="overflow-clip">
       <body
-        className={`${urbanist.className} antialiased h-full text-foreground bg-background flex flex-col text-sm`}
+        className={`${urbanist.className} antialiased text-foreground bg-background flex flex-col text-sm`}
       >
         {children}
       </body>
