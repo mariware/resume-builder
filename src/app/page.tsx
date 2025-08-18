@@ -67,25 +67,20 @@ export default function Home() {
           onSelect={handleSectionSelect}
         />
         <main className="flex w-full flex-col sm:items-start border-x border-x-foreground/10 lg:border-x-0">
-          <div className="hidden lg:block h-[calc(100dvh-136px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
-            <CurrentSection
-              resumeData={resumeData}
-              setResumeData={setResumeData}
-            />
-          </div>
-          {preview ? (
-            <div className="lg:hidden p-8 pr-4 text-xs w-full h-[calc(100dvh-136px)]">
-              <h2 className="text-lg font-bold mb-4">Resume Preview</h2>
-              <Resume resumeData={resumeData} />
-            </div>
-          ) : (
-            <div className="lg:hidden h-[calc(100dvh-136px)] overflow-y-auto w-full [scrollbar-gutter:stable]">
+          <div className="relative h-[calc(100dvh-136px)] w-full overflow-y-auto [scrollbar-gutter:stable]">
+            <div className={`${preview ? "hidden" : "block"} lg:block h-full`}>
               <CurrentSection
                 resumeData={resumeData}
                 setResumeData={setResumeData}
               />
             </div>
-          )}
+            <div
+              className={`${preview ? "block" : "hidden"} lg:hidden p-8 pr-4 text-xs h-full`}
+            >
+              <h2 className="text-lg font-bold mb-4">Resume Preview</h2>
+              <Resume resumeData={resumeData} />
+            </div>
+          </div>
           <div className="h-fit flex justify-between items-center py-4 text-sm border-t border-t-foreground/10 w-full px-6">
             <Button
               onClick={() => changeSection("prev")}

@@ -12,12 +12,30 @@ function ProfileSection({
   resumeData: ResumeData;
   setResumeData: React.Dispatch<React.SetStateAction<ResumeData>>;
 }) {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setResumeData((prevData) => ({ ...prevData, imageUrl: url }));
+    }
+  };
+
   return (
     <div
       className={cn(
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
+      <p className="col-span-8 font-bold text-lg">Profile Section</p>
+      <div className="col-span-8 grid w-full items-center gap-2">
+        <Label htmlFor="photo">Profile Picture</Label>
+        <Input
+          type="file"
+          id="photo"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+      </div>
       <p className="col-span-8 font-bold text-lg">Profile Section</p>
       <div className="col-span-8 grid w-full items-center gap-2">
         <Label htmlFor="name">Full Name</Label>

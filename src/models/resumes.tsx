@@ -1,6 +1,7 @@
 import { ResumeData } from "./types";
 
 export const emptyResume: ResumeData = {
+  imageUrl: "",
   profile: {
     name: "",
     profession: "",
@@ -17,6 +18,7 @@ export const emptyResume: ResumeData = {
 };
 
 export const exampleResume: ResumeData = {
+  imageUrl: "/default.jpg",
   profile: {
     name: "Example Name",
     profession: "Example Profession",

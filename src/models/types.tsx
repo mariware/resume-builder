@@ -36,6 +36,7 @@ export type Language = {
 };
 
 export type ResumeData = {
+  imageUrl: string;
   profile: Profile;
   education: Education[];
   work: Work[];

@@ -22,7 +22,7 @@ function Header({ prefillData, className }: HeaderProps) {
           onClick={() => prefillData()}
           className="bg-blue-400 hover:bg-blue-500 text-white font-bold padding-0"
         >
-          Show Sample
+          Load Sample
         </Button>
       </div>
     </div>

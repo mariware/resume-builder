@@ -1,9 +1,11 @@
 "use client";
+/* eslint-disable jsx-a11y/alt-text */
 
 import React, { useEffect, useRef, useState } from "react";
 import {
   Page,
   Text,
+  Image,
   View,
   Document,
   PDFViewer,
@@ -15,46 +17,66 @@ function ResumeDocument({ resumeData }: { resumeData: ResumeData }) {
   return (
     <Document>
       <Page size="A4" style={{ padding: "35", fontSize: "10" }}>
-        <View style={{ gap: "4", paddingBottom: "8" }}>
-          <Text style={{ fontWeight: "700", fontSize: "18" }}>
-            {resumeData.profile.name}
-          </Text>
-          <Text>{resumeData.profile.profession}</Text>
-        </View>
         <View
           style={{
             flexDirection: "row",
-            gap: "64",
             borderBottom: "gray",
             borderBottomWidth: "1",
             paddingBottom: "12",
           }}
         >
-          <View style={{ gap: "4" }}>
-            <Text>{resumeData.profile.email}</Text>
-            <Text>{resumeData.profile.phoneNumber}</Text>
-          </View>
-          <View style={{ gap: "4" }}>
-            <Text>
-              {resumeData.profile.linkedin && (
-                <Link
-                  src={`https://linkedin.com/in/${resumeData.profile.linkedin}`}
-                  style={{ color: "black", textDecoration: "none" }}
-                >
-                  linkedin.com/in/{resumeData.profile.linkedin}
-                </Link>
-              )}
-            </Text>
-            <Text>
-              {resumeData.profile.portfolio && (
-                <Link
-                  src={resumeData.profile.portfolio}
-                  style={{ color: "black", textDecoration: "none" }}
-                >
-                  {resumeData.profile.portfolio}
-                </Link>
-              )}
-            </Text>
+          {resumeData.imageUrl && (
+            <Image
+              src={resumeData.imageUrl}
+              style={{
+                width: "70",
+                height: "70",
+                marginRight: "12",
+                objectFit: "cover",
+              }}
+            />
+          )}
+          <View>
+            <View style={{ gap: "4", paddingBottom: "8" }}>
+              <Text style={{ fontWeight: "700", fontSize: "18" }}>
+                {resumeData.profile.name}
+              </Text>
+              <Text>{resumeData.profile.profession}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: "64",
+                paddingBottom: "12",
+              }}
+            >
+              <View style={{ gap: "4" }}>
+                <Text>{resumeData.profile.email}</Text>
+                <Text>{resumeData.profile.phoneNumber}</Text>
+              </View>
+              <View style={{ gap: "4" }}>
+                <Text>
+                  {resumeData.profile.linkedin && (
+                    <Link
+                      src={`https://linkedin.com/in/${resumeData.profile.linkedin}`}
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      linkedin.com/in/{resumeData.profile.linkedin}
+                    </Link>
+                  )}
+                </Text>
+                <Text>
+                  {resumeData.profile.portfolio && (
+                    <Link
+                      src={resumeData.profile.portfolio}
+                      style={{ color: "black", textDecoration: "none" }}
+                    >
+                      {resumeData.profile.portfolio}
+                    </Link>
+                  )}
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
         {resumeData.profile.description && (
@@ -96,7 +118,7 @@ function ResumeDocument({ resumeData }: { resumeData: ResumeData }) {
                   </Text>
                 </View>
                 <Text>{edu.school}</Text>
-                <Text>{edu.schoolLocation}</Text>
+                <Text style={{ fontSize: "8" }}>{edu.schoolLocation}</Text>
               </View>
             ))}
             {resumeData.work.length && (
@@ -119,6 +141,7 @@ function ResumeDocument({ resumeData }: { resumeData: ResumeData }) {
                     {work.workEndDate}
                   </Text>
                 </View>
+                <Text style={{ fontSize: "8" }}>{work.workLocation}</Text>
                 <Text>{work.position}</Text>
                 <Text>{work.workDescription}</Text>
               </View>
