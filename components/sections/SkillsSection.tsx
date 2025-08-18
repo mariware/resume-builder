@@ -13,6 +13,8 @@ import {
 } from "../select";
 import { Skill, Language, ResumeData } from "@/models/types";
 import { Button } from "../button";
+import { CircleQuestionMark, PencilRuler } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 
 function SkillsSection({
   resumeData,
@@ -97,7 +99,17 @@ function SkillsSection({
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
-      <p className="col-span-8 font-bold text-lg">Skills Section</p>
+      <div className="col-span-8 flex flex-col gap-2">
+        <div className="flex items-center">
+          <PencilRuler className="stroke-1.5 mr-4 w-5" />
+          <p className="font-bold text-lg">Skills Section</p>
+        </div>
+        <p className="text-muted-foreground text-justify">
+          These are your key strengths. Highlight the most relevant skills to
+          the job using short keywords rather than sentences. Include skills and
+          languages you know with their corresponding proficiency.
+        </p>
+      </div>
       {resumeData.skills.map((skill, index) => (
         <React.Fragment key={index}>
           {index !== 0 && (
@@ -116,7 +128,42 @@ function SkillsSection({
             />
           </div>
           <div className="col-span-8 md:col-span-4 grid w-full items-center gap-2">
-            <Label htmlFor="skillProficiency">Skill Proficiency</Label>
+            {index === 0 ? (
+              <div className="flex justify-between">
+                <Label htmlFor="skillProficiency">Skill Proficiency</Label>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <CircleQuestionMark className="text-muted-foreground w-4" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-48 sm:max-w-none">
+                    <p>
+                      Skill levels show how well you can perform a task and the
+                      depth of your expertise.
+                    </p>
+                    <ol>
+                      <li>
+                        <span className="font-bold">Beginner</span>: Just
+                        starting; requires supervision.
+                      </li>
+                      <li>
+                        <span className="font-bold">Intermediate</span>: Knows
+                        basics; performs with some guidance.
+                      </li>
+                      <li>
+                        <span className="font-bold">Advanced</span>: Strong
+                        grasp; works independently.
+                      </li>
+                      <li>
+                        <span className="font-bold">Expert</span>: Full mastery;
+                        able to teach or guide others.
+                      </li>
+                    </ol>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            ) : (
+              <Label htmlFor="skillProficiency">Skill Proficiency</Label>
+            )}
             <Select
               onValueChange={(e) => handleSkillChange(index, "proficiency", e)}
               value={resumeData.skills[index].proficiency}
@@ -164,7 +211,49 @@ function SkillsSection({
             />
           </div>
           <div className="col-span-8 md:col-span-4 grid w-full items-center gap-2">
-            <Label htmlFor="languageProficiency">Language Proficiency</Label>
+            {index === 0 ? (
+              <div className="flex justify-between">
+                <Label htmlFor="languageProficiency">
+                  Language Proficiency
+                </Label>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <CircleQuestionMark className="text-muted-foreground w-4" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-52 sm:max-w-none">
+                    <p>
+                      Language fluency levels show how well you can read, write,
+                      and speak a language.
+                    </p>
+                    <ol>
+                      <li>
+                        <span className="font-bold">Basic</span>: Can form
+                        simple sentences and basic phrases.
+                      </li>
+                      <li>
+                        <span className="font-bold">Limited Working</span>:
+                        Handles everyday conversations and basic instructions.
+                      </li>
+                      <li>
+                        <span className="font-bold">Professional Working</span>:
+                        Effective in most workplace situations; may need help
+                        with complex terms.
+                      </li>
+                      <li>
+                        <span className="font-bold">Full Professional</span>:
+                        Advanced workplace fluency with near-native command.
+                      </li>
+                      <li>
+                        <span className="font-bold">Primary Fluency</span>:
+                        Complete fluency with little to no accent.
+                      </li>
+                    </ol>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            ) : (
+              <Label htmlFor="languageProficiency">Language Proficiency</Label>
+            )}
             <Select
               onValueChange={(e) =>
                 handleLanguageChange(index, "proficiency", e)

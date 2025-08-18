@@ -4,6 +4,7 @@ import { Label } from "../label";
 import { Input } from "../input";
 import { Education, ResumeData } from "@/models/types";
 import { Button } from "../button";
+import { GraduationCap } from "lucide-react";
 
 function EducationSection({
   resumeData,
@@ -56,7 +57,18 @@ function EducationSection({
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
-      <p className="col-span-8 font-bold text-lg">Education Section</p>
+      <div className="col-span-8 flex flex-col gap-2">
+        <div className="flex items-center">
+          <GraduationCap className="stroke-1.5 mr-4 w-5" />
+          <p className="font-bold text-lg">Education Section</p>
+        </div>
+        <p className="text-muted-foreground text-justify">
+          This is your academic background. List degrees in reverse
+          chronological order, starting with the most recent. If you&apos;re
+          still studying, include your expected graduation date. Only list high
+          school if you haven&apos;t attended college.
+        </p>
+      </div>
       {resumeData.education.map((edu, index) => (
         <React.Fragment key={index}>
           {index !== 0 && (

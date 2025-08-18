@@ -19,7 +19,14 @@ function Header({ prefillData, className }: HeaderProps) {
       <div className="w-full lg:max-w-7xl flex justify-between items-center px-10 py-4 text-sm">
         <Logo className="h-6 fill-white" />
         <Button
-          onClick={() => prefillData()}
+          onClick={() => {
+            if (
+              window.confirm(
+                "Loading the sample will reset all inputs. Do you wish to proceed?",
+              )
+            )
+              prefillData();
+          }}
           className="bg-blue-400 hover:bg-blue-500 text-white font-bold padding-0"
         >
           Load Sample

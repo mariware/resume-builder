@@ -5,6 +5,7 @@ import { Input } from "../input";
 import { Textarea } from "../textarea";
 import { Work, ResumeData } from "@/models/types";
 import { Button } from "../button";
+import { Briefcase } from "lucide-react";
 
 function WorkSection({
   resumeData,
@@ -54,7 +55,18 @@ function WorkSection({
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
-      <p className="col-span-8 font-bold text-lg">Work Experience Section</p>
+      <div className="col-span-8 flex flex-col gap-2">
+        <div className="flex items-center">
+          <Briefcase className="stroke-1.5 mr-4 w-5" />
+          <p className="font-bold text-lg">Work Experience Section</p>
+        </div>
+        <p className="text-muted-foreground text-justify">
+          This is your work history. List positions in reverse chronological
+          order, starting with the most recent. Focus on achievements and
+          responsibilities using strong action verbs, and avoid personal
+          pronouns.
+        </p>
+      </div>
       {resumeData.work.map((work, index) => (
         <React.Fragment key={index}>
           {index !== 0 && (

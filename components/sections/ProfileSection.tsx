@@ -4,6 +4,7 @@ import { Label } from "../label";
 import { Input } from "../input";
 import { Textarea } from "../textarea";
 import { ResumeData } from "@/models/types";
+import { SquareUser } from "lucide-react";
 
 function ProfileSection({
   resumeData,
@@ -26,7 +27,16 @@ function ProfileSection({
         "lg:w-lg grid grid-cols-8 gap-4 justify-center text-foreground p-8 w-full mx-auto",
       )}
     >
-      <p className="col-span-8 font-bold text-lg">Profile Section</p>
+      <div className="col-span-8 flex flex-col gap-2">
+        <div className="flex items-center">
+          <SquareUser className="stroke-1.5 mr-4 w-5" />
+          <p className="font-bold text-lg">Profile Section</p>
+        </div>
+        <p className="text-muted-foreground text-justify">
+          This is your personal header section. Include your name, role, and
+          contact details so employers can easily reach you.
+        </p>
+      </div>
       <div className="col-span-8 grid w-full items-center gap-2">
         <Label htmlFor="photo">Profile Picture</Label>
         <Input
@@ -36,7 +46,6 @@ function ProfileSection({
           onChange={handleFileChange}
         />
       </div>
-      <p className="col-span-8 font-bold text-lg">Profile Section</p>
       <div className="col-span-8 grid w-full items-center gap-2">
         <Label htmlFor="name">Full Name</Label>
         <Input
